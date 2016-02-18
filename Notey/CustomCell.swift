@@ -20,6 +20,9 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var cellSeparator: UIView!
     @IBOutlet weak var deleteBtn: UIButton!
     
+    let selectedColor: UIColor = UIColor(red: 254/255, green: 83/255, blue: 57/255, alpha: 1)
+    let defaultColor: UIColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,10 +32,9 @@ class CustomCell: UITableViewCell {
         guard let delegate = self.delegate else {
             return
         }
+        
         delegate.deleteButtonPressed(self)
     }
-    
-    // test in progress
 
     
 }
