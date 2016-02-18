@@ -9,7 +9,7 @@ import UIKit
 import QuartzCore
 import AVFoundation
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Deletable {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Deletable, NotesTableDelegate {
     
     @IBOutlet weak var inputField: CustomTextField!
     @IBOutlet weak var notesTable: UITableView!
@@ -56,8 +56,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cell: CustomCell = tableView.dequeueReusableCellWithIdentifier("cell") as! CustomCell
-        
-        // Fetches the appropriate meal for the data source layout.
+
         let note = notes[indexPath.row]
         
         if note.selected == true {
@@ -71,6 +70,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if cell.delegate == nil {
             cell.delegate = self
         }
+        
+        let item = notes[indexPath.row]
+        cell.delegateForNotesTableDelegate = self
+        cell.note = item
         
         return cell
     }
@@ -126,6 +129,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func loadItems() -> [Notes]? {
         return NSKeyedUnarchiver.unarchiveObjectWithFile(Notes.ArchiveURL.path!) as? [Notes]
+    }
+    
+    func noteDeleted(note: Notes) {
+        let index = (notes as NSArray).indexOfObject(note)
+        if index == NSNotFound { return }
+        
+        // could removeAtIndex in the loop but keep it here for when indexOfObject works
+        notes.removeAtIndex(index)
+        
+        // use the UITableView to animate the removal of this row
+        notesTable.beginUpdates()
+        let indexPathForRow = NSIndexPath(forRow: index, inSection: 0)
+        notesTable.deleteRowsAtIndexPaths([indexPathForRow], withRowAnimation: .Fade)
+        notesTable.endUpdates()
     }
     
     
