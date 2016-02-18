@@ -1,5 +1,5 @@
 # Notey
-A simple note taking app. I wanted to create simple app for taking one-line notes on which I will later implement other functionality like reminders, gestures etc.
+A simple note taking app. I wanted to create a simple app for taking one-line notes on which I will later implement other functionality like reminders, gestures etc.
 
 #Features
 - add new notes
