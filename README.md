@@ -9,7 +9,7 @@ A simple note taking app. I wanted to create a simple app for taking one-line no
 - add new notes with a button + or with Return key
 - delete notes with a tap
 
-#Future to-do
+### Future to-do
 - deleting notes with a swipe gesture
 - Firebase implementation
 - UI improvement
