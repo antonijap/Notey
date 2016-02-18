@@ -32,7 +32,7 @@ class CustomCell: UITableViewCell {
         delegate.deleteButtonPressed(self)
     }
     
-    // test
+    // test in progress
 
     
 }
