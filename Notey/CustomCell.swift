@@ -19,7 +19,7 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var cellLabel: UILabel!
     @IBOutlet weak var cellSeparator: UIView!
     @IBOutlet weak var deleteBtn: UIButton!
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,10 +29,9 @@ class CustomCell: UITableViewCell {
         guard let delegate = self.delegate else {
             return
         }
+        
         delegate.deleteButtonPressed(self)
     }
-    
-    // test in progress
 
     
 }

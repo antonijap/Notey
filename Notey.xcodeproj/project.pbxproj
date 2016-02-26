@@ -17,6 +17,7 @@
 		6808913B1C6FC14700B4719D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808913A1C6FC14700B4719D /* CustomTextField.swift */; };
 		680891401C70E96B00B4719D /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808913F1C70E96B00B4719D /* Notes.swift */; };
 		680891441C722F2400B4719D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680891431C722F2400B4719D /* CustomCell.swift */; };
+		6891C1641C7E44FE00ECE99A /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6891C1631C7E44FE00ECE99A /* iAd.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		68AF988C1C72404300458F75 /* pop_drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 68AF988B1C72404300458F75 /* pop_drip.wav */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		6808913A1C6FC14700B4719D /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		6808913F1C70E96B00B4719D /* Notes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
 		680891431C722F2400B4719D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		6891C1631C7E44FE00ECE99A /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		68AF988B1C72404300458F75 /* pop_drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pop_drip.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6891C1641C7E44FE00ECE99A /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 		680891001C6FA5D000B4719D = {
 			isa = PBXGroup;
 			children = (
+				6891C1631C7E44FE00ECE99A /* iAd.framework */,
 				6808910B1C6FA5D100B4719D /* Notey */,
 				680891201C6FA5D100B4719D /* NoteyTests */,
 				6808912B1C6FA5D100B4719D /* NoteyUITests */,
