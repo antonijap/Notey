@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="46" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NPO-SG-Mi1">
-                                <rect key="frame" x="16" y="177" width="288" height="391"/>
+                                <rect key="frame" x="16" y="177" width="288" height="341"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" red="0.28627450980392155" green="0.28627450980392155" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -104,34 +104,54 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TableTop" translatesAutoresizingMaskIntoConstraints="NO" id="ZfF-dN-kOS">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="TableTop" translatesAutoresizingMaskIntoConstraints="NO" id="ZfF-dN-kOS">
                                 <rect key="frame" x="16" y="151" width="288" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="WuB-ae-1Qv"/>
                                 </constraints>
                             </imageView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FMf-v6-2fA">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bw6-jj-899"/>
+                                </constraints>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" red="0.99607843139999996" green="0.32549019610000002" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="epY-ug-yKk" firstAttribute="centerY" secondItem="1N9-Ab-CxZ" secondAttribute="centerY" constant="6" id="1MO-0m-6KW"/>
+                            <constraint firstAttribute="trailing" secondItem="FMf-v6-2fA" secondAttribute="trailing" id="5ep-by-6xM"/>
+                            <constraint firstItem="FMf-v6-2fA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Bct-9S-vpu"/>
                             <constraint firstItem="epY-ug-yKk" firstAttribute="trailing" secondItem="1N9-Ab-CxZ" secondAttribute="trailing" constant="20" id="EeJ-us-Yhe"/>
+                            <constraint firstItem="NPO-SG-Mi1" firstAttribute="top" secondItem="epY-ug-yKk" secondAttribute="bottom" constant="59" id="GHp-u5-DjX"/>
+                            <constraint firstItem="FMf-v6-2fA" firstAttribute="top" secondItem="NPO-SG-Mi1" secondAttribute="bottom" id="N0U-RM-7ce"/>
                             <constraint firstItem="epY-ug-yKk" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="OwH-TS-yl3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ZfF-dN-kOS" secondAttribute="trailing" id="R9p-2E-qrP"/>
-                            <constraint firstItem="NPO-SG-Mi1" firstAttribute="top" secondItem="ZfF-dN-kOS" secondAttribute="bottom" constant="-3" id="WBz-oF-dvJ"/>
+                            <constraint firstItem="NPO-SG-Mi1" firstAttribute="top" secondItem="ZfF-dN-kOS" secondAttribute="bottom" id="WBz-oF-dvJ"/>
                             <constraint firstItem="NPO-SG-Mi1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="WpU-bk-pPe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NPO-SG-Mi1" secondAttribute="trailing" constant="-4" id="dbP-GB-hOw"/>
                             <constraint firstItem="1N9-Ab-CxZ" firstAttribute="trailing" secondItem="Yvd-lu-fm5" secondAttribute="trailing" constant="4" id="fkx-Vq-eX5"/>
                             <constraint firstItem="1N9-Ab-CxZ" firstAttribute="leading" secondItem="epY-ug-yKk" secondAttribute="leading" constant="20" id="gKN-pa-EG7"/>
                             <constraint firstItem="NPO-SG-Mi1" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="hUn-Ig-VPG"/>
                             <constraint firstItem="NPO-SG-Mi1" firstAttribute="top" secondItem="epY-ug-yKk" secondAttribute="top" constant="149" id="jxX-F7-HLH"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NPO-SG-Mi1" secondAttribute="bottom" id="jyw-5p-BU1"/>
+                            <constraint firstAttribute="bottom" secondItem="FMf-v6-2fA" secondAttribute="bottom" id="t6w-gU-ZO9"/>
                             <constraint firstItem="Yvd-lu-fm5" firstAttribute="centerY" secondItem="1N9-Ab-CxZ" secondAttribute="centerY" id="uGE-sb-uvW"/>
                             <constraint firstItem="ZfF-dN-kOS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ueP-a9-ZNP"/>
                             <constraint firstAttribute="trailing" secondItem="epY-ug-yKk" secondAttribute="trailing" id="uol-oV-Bgs"/>
                             <constraint firstItem="epY-ug-yKk" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="x04-nh-xlK"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="dbP-GB-hOw"/>
+                                <exclude reference="jxX-F7-HLH"/>
+                                <exclude reference="jyw-5p-BU1"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="iadBanner" destination="FMf-v6-2fA" id="4Dp-Uy-QP7"/>
                         <outlet property="inputField" destination="1N9-Ab-CxZ" id="vCp-1E-ESU"/>
                         <outlet property="notesTable" destination="NPO-SG-Mi1" id="iep-w5-TjY"/>
                     </connections>

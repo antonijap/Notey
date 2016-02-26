@@ -8,11 +8,13 @@
 import UIKit
 import QuartzCore
 import AVFoundation
+import iAd
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, Deletable {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ADBannerViewDelegate, Deletable {
     
     @IBOutlet weak var inputField: CustomTextField!
     @IBOutlet weak var notesTable: UITableView!
+    @IBOutlet weak var iadBanner: ADBannerView!
     
     var addSound: AVAudioPlayer!
     var notes = [Notes]()
@@ -65,36 +67,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    // MARK: - Delete button
-    
-    func deleteButtonPressed(cell: CustomCell) {
-        let cellRow = notesTable.indexPathForCell(cell)?.row
-        notes.removeAtIndex(cellRow!)
-        
-        notesTable.reloadData()
-        saveItems()
-        
-        cell.deleteBtn.hidden = true
-        cell.cellSeparator.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-        cell.cellLabel.textColor = UIColor(red: 73/255, green: 73/255, blue: 73/255, alpha: 1)
-        
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // We get the cell from the indexpath
+
         let cell = notesTable.cellForRowAtIndexPath(indexPath) as! CustomCell
-        
-        // we change the buttons hidden status
+
         if notes[indexPath.row].selected == false {
             notes[indexPath.row].selected = true
             cell.deleteBtn.hidden = false
-            cell.cellSeparator.backgroundColor = UIColor(red: 254/255, green: 83/255, blue: 57/255, alpha: 1)
-            cell.cellLabel.textColor = UIColor(red: 254/255, green: 83/255, blue: 57/255, alpha: 1)
+
         } else if notes[indexPath.row].selected == true {
             notes[indexPath.row].selected = false
             cell.deleteBtn.hidden = true
-            cell.cellSeparator.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-            cell.cellLabel.textColor = UIColor(red: 73/255, green: 73/255, blue: 73/255, alpha: 1)
         }
         
         inputField.resignFirstResponder()
@@ -105,12 +88,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = notesTable.cellForRowAtIndexPath(indexPath) as! CustomCell
         notes[indexPath.row].selected = false
         cell.deleteBtn.hidden = true
-        cell.cellSeparator.backgroundColor = UIColor(red: 237/255, green: 237/255, blue: 237/255, alpha: 1)
-        cell.cellLabel.textColor = UIColor(red: 73/255, green: 73/255, blue: 73/255, alpha: 1)
+    
     }
     
     
-    // MARK: - Save button
+    // MARK: - Methods
     
     @IBAction func addButton(sender: UIButton) {
         if let item = Notes(item: inputField.text!) {
@@ -122,6 +104,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         inputField.resignFirstResponder()
+    }
+    
+    func deleteButtonPressed(cell: CustomCell) {
+        let cellRow = notesTable.indexPathForCell(cell)?.row
+        notes.removeAtIndex(cellRow!)
+        
+        notesTable.reloadData()
+        saveItems()
+        
+        cell.deleteBtn.hidden = true
+        
+    }
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        notesTable.reloadData()
     }
     
     // MARK: NSCoding
@@ -141,8 +138,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
+        // iAd Setup
+        iadBanner.hidden = true
+        iadBanner.delegate = self
         
         // Connect and prepare audio
         let path = NSBundle.mainBundle().pathForResource("pop_drip", ofType: "wav")
@@ -155,7 +154,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print(err.debugDescription)
         }
         
-        // Load any saved items, otherwise load sample data.
         if let savedItems = loadItems() {
             notes += savedItems
         }
@@ -163,26 +161,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         notesTable.delegate = self
         notesTable.dataSource = self
         
-        // MARK: - NOTE FROM JHOAN
         // You have to declare self as the delegate, to respond to user inputs
         inputField.delegate = self
         
         }
     
-    
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        NSLog("Error loading iAds")
+        iadBanner.hidden = false
+    }
+    
+    func bannerViewWillLoadAd(banner: ADBannerView!) {
+        
+    }
+    
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        return true
+    }
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        iadBanner.hidden = false
+    }
 
     
 }
-
-// MARK: - NOTE FROM JHOAN
-
-// Here is an extension to keep things orginized, and conforming to the TextField Delegate
 
 extension ViewController: UITextFieldDelegate {
     
@@ -214,7 +221,6 @@ extension ViewController: UITextFieldDelegate {
         }
 
     }
-
     
     // This function dismisses the keyboard when user touches outside the keyboard
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
